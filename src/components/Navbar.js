@@ -4,13 +4,10 @@ import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
     let location = useLocation();
-    useEffect(() => {
-        console.log(location.pathname);
-    }, [location]);
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-            <Link className="navbar-brand" to="/">Navbar</Link>
+            <Link className="navbar-brand" to="/">iNotebook</Link>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
             </button>
@@ -23,6 +20,10 @@ export default function Navbar() {
                 <Link className={`nav-link ${location.pathname === "/about" ? "active" : ""}`} to="/about">About</Link>
                 </li>
             </ul>
+            </div>
+            <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+            <Link className="btn btn-primary mx-1" to="/login" role="button">Login</Link>
+            <Link className="btn btn-primary mx-1" to="/signup" role="button">SignUp</Link>
             </div>
         </div>
         </nav>
