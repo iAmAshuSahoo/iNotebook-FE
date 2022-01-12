@@ -9,12 +9,12 @@ function Alert(props) {
         return val[0].toUpperCase() + val.slice(1);
     }
     return (
-        <div style={{height: '50px'}}>
+        <>
             {props.alert &&
             <div className={`alert alert-${type} alert-dismissible fade show`} role="alert">
                 <strong>{capitalise(type)}:</strong> {message}
             </div>}
-        </div>
+        </>
     )
 }
 

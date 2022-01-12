@@ -8,7 +8,6 @@ const AlertState = (props) => {
         message: ''
     })
     const showAlert = (type, message) => {
-        console.log("Hi Alert")
         const newObj = {...alert}
         newObj.show = true;
         newObj.type = type;

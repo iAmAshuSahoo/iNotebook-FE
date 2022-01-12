@@ -34,12 +34,12 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Hello");
         fetchUser()
     }
 
     return (
-        <div className='mt-5'>
+        <div className='mt-3'>
+            <h1 className='my-5'>Log In to see your saved notes on iNotebook</h1>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="row mb-3">
                     <label htmlFor="email" className="col-sm-2 col-form-label">Email</label>

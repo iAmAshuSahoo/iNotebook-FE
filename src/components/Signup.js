@@ -35,7 +35,6 @@ function Signup() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("hello");
         if (credentials.password === credentials.confirmPassword) {
             createUser();
         } else {
@@ -44,7 +43,8 @@ function Signup() {
     }
 
     return (
-        <div className='mt-5'>
+        <div className='mt-3'>
+            <h1 className='my-5'>Create an account to save your notes on iNotebook</h1>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <div className="row mb-3">
                     <label htmlFor="email" className="col-sm-2 col-form-label">Email</label>
