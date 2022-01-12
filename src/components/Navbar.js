@@ -1,11 +1,17 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import { Link, useLocation } from "react-router-dom";
-
+import Alert from './Alert';
+import alertContext from '../context/alerts/alertContext';
+import {useContext} from 'react'
 
 export default function Navbar() {
     let location = useLocation();
+    const context = useContext(alertContext);
+    const {alert} = context;
+  
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <>
+         <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
             <Link className="navbar-brand" to="/">iNotebook</Link>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,6 +32,8 @@ export default function Navbar() {
             <Link className="btn btn-primary mx-1" to="/signup" role="button">SignUp</Link>
             </div>
         </div>
-        </nav>
+        </nav>       
+          {alert.show && <Alert alert={{type:alert.type, message:alert.message}} />}
+        </>
     )
 }

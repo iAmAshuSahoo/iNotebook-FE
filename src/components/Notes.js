@@ -11,7 +11,7 @@ function Notes() {
 
     useEffect( () => {
         getNote();
-    }, [notes])
+    }, [])
 
     const editNote = (note) => {
         // console.log("Hello", id)

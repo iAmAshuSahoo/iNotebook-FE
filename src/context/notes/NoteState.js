@@ -1,9 +1,13 @@
 import NoteContext from './noteContext';
-import { useState } from 'react'
+import alertContext from '../alerts/alertContext';
+import { useState, useContext } from 'react'
 
 const NoteState = (props) => {
   const host = "http://localhost:5000";
   const [notes, setNotes] = useState([]);
+
+  const alertContextVal = useContext(alertContext);
+  const {showAlert} = alertContextVal;
 
   const getNote = async () => {
     const url = `${host}/api/notes/fetchnotes`
@@ -29,18 +33,19 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({title, description, tag}) // body data type must match "Content-Type" header
     });
-    const json = response.json();
+    const json = await response.json();
 
-    const note =  {
-      "_id": "61da91c9152317h139234107",
-      "user": "61d9bbdc2677d37b94fabe86",
-      "title": title,
-      "description": description,
-      "tag": tag,
-      "date": "2022-01-09T07:42:01.933Z",
-      "__v": 0
-    }
-    return setNotes(notes.concat(note))
+    // const note =  {
+    //   "_id": "61da91c9152317h139234107",
+    //   "user": "61d9bbdc2677d37b94fabe86",
+    //   "title": title,
+    //   "description": description,
+    //   "tag": tag,
+    //   "date": "2022-01-09T07:42:01.933Z",
+    //   "__v": 0
+    // }
+    showAlert("success", "Note Added Successfully");
+    return setNotes(notes.concat(json))
   }
 
   // delete Notes
@@ -54,7 +59,7 @@ const NoteState = (props) => {
       },
     });
     const json = response.json();
-
+    showAlert("success", "Note Deleted Successfully");
     const newNote = notes.filter(note => note._id !== id);
     return setNotes(newNote);
   }
@@ -80,6 +85,7 @@ const NoteState = (props) => {
         note.tag = tag;
       }
     })
+    showAlert("success", "Note Updated Successfully");
     setNotes(newNote);
   }
 
